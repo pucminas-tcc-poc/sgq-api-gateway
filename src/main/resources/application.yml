@@ -4,7 +4,7 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://eureka:8761/eureka
     instance:
       preferIpAddress: true
 
@@ -16,16 +16,14 @@ spring:
       routes:
 
         - id: sgq-quality-compliance
-#          uri: lb://sgq-quality-compliance
-          uri: http://localhost:8081
+          uri: http://sgq-quality-compliance:8081
           predicates:
-            - Path=/api/v1/**
+            - Path=/compliance/api/v1/**
 
         - id: sgq-quality-transparence
-#          uri: lb://sgq-quality-transparence
-          uri: http://localhost:8082
+          uri: http://sgq-quality-transparence:8082
           predicates:
-            - Path=/api/v1/**
+            - Path=/notification/api/v1/**
 
       discovery:
         locator:
